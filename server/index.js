@@ -7,6 +7,12 @@ const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
 
+
+app.get('/', (req, res) => {
+  res.send('Backend server is running.');
+});
+
+
 app.use(cors());
 app.use(express.json());
 

@@ -1,0 +1,40 @@
+version: '3'
+services:
+  frontend:
+    image: chat-app-frontend
+    build:
+      context: ./public
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_BACKEND_URL=http://backend:5000
+    networks:
+      - mcafinalproject_network
+
+  backend:
+    image: chat-app-backend
+    build:
+      context: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/Chat
+    volumes:
+      - /home/node/app/node_modules
+    networks:
+      - mcafinalproject_network
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mcafinalproject_network
+
+networks:
+  mcafinalproject_network:
+
+volumes:
+  mongo-data:
+
+

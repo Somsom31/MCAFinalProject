@@ -1,5 +1,6 @@
+const bcryptjs = require("bcryptjs");
 const User = require("../models/userModel");
-const bcrypt = require("bcrypt");
+
 
 module.exports.login = async (req, res, next) => {
   try {
@@ -7,7 +8,7 @@ module.exports.login = async (req, res, next) => {
     const user = await User.findOne({ username });
     if (!user)
       return res.json({ msg: "Incorrect Username or Password", status: false });
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
     if (!isPasswordValid)
       return res.json({ msg: "Incorrect Username or Password", status: false });
     delete user.password;
@@ -26,7 +27,7 @@ module.exports.register = async (req, res, next) => {
     const emailCheck = await User.findOne({ email });
     if (emailCheck)
       return res.json({ msg: "Email already used", status: false });
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
     const user = await User.create({
       email,
       username,
