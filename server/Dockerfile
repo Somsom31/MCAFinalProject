@@ -21,7 +21,7 @@ COPY . .
 ENV PORT=5000
 
 # Setze die Umgebungsvariable für die MongoDB-Verbindungs-URL
-ENV MONGO_URL=mongodb://mongo:27017/Chat
+ENV MONGO_URL=mongodb+srv://Projekt:DodoOne1@cluster0.fc8be5n.mongodb.net/chat
 
 # Exponiere den Port, auf dem der Server lauscht
 EXPOSE 5000
