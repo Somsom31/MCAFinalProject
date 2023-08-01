@@ -18,7 +18,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URL=mongodb+srv://Projekt:DodoOne1@cluster0.fc8be5n.mongodb.net/chat
+      - MONGO_URL=mongodb+srv://Projekt:DodoOne1@cluster0.fc8be5n.mongodb.net/?retryWrites=true&w=majority
     volumes:
       - /home/node/app/node_modules
     networks:
