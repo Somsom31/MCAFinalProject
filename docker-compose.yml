@@ -31,10 +31,17 @@ services:
     networks:
       - mcafinalproject_network
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - mcafinalproject_network
+
 networks:
   mcafinalproject_network:
 
 volumes:
   mongo-data:
-
-
