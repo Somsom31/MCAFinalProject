@@ -1,15 +1,17 @@
-name: CI_Pipeline
+name: Staging CI
+
 on:
   push:
     branches:
       - staging
 
 jobs:
-  build:
+  test:
+    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Set up Node Environment
@@ -17,8 +19,8 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install dependencies
-        run: npm i
+      - name: Install Node Dependencies
+        run: npm ci
 
       - name: Run Tests
         run: npm test
