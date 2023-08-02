@@ -2,7 +2,7 @@ name: CI_Pipeline
 on:
   push:
     branches:
-      - mauro
+      - staging 
 
 jobs:
   build:
