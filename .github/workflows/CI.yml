@@ -18,7 +18,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-
+      - name: where am i
+        run: ls -a
       - name: Install Node Dependencies
         run: npm i
 
