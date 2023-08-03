@@ -1,3 +1,6 @@
+require("dotenv").config();
+console.log("MongoDB URL:", process.env.MONGO_URL);
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -5,27 +8,25 @@ const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 const app = express();
 const socket = require("socket.io");
-require("dotenv").config();
-
 
 app.get('/', (req, res) => {
   res.send('Backend server is running.');
 });
 
-
 app.use(cors());
 app.use(express.json());
 
+const mongoURL = "mongodb+srv://muhammadhera:wahnsinn@cluster1.zd1gze6.mongodb.net/Chat?retryWrites=true&w=majority";
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(mongoURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("DB Connetion Successfull");
+    console.log("DB Connection Successful");
   })
   .catch((err) => {
-    console.log("cannot connect to DB");
+    console.log("Cannot connect to DB");
     console.log(err.message);
   });
 
@@ -37,7 +38,7 @@ const server = app.listen(process.env.PORT, () =>
 );
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "http://10.100.0.50:3000",
     credentials: true,
   },
 });
@@ -56,3 +57,4 @@ io.on("connection", (socket) => {
     }
   });
 });
+

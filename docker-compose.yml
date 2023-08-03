@@ -18,14 +18,14 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URL=mongodb+srv://Projekt:DodoOne1@cluster0.fc8be5n.mongodb.net/?retryWrites=true&w=majority
+      - MONGO_URL==mongodb+srv://muhammadhera:wahnsinn@cluster1.zd1gze6.mongodb.net/?retryWrites=true&w=majority
     volumes:
       - /home/node/app/node_modules
     networks:
       - mcafinalproject_network
 
   mongo:
-    image: mongo:latest
+    image: mongo:4.4
     volumes:
       - mongo-data:/data/db
     networks:

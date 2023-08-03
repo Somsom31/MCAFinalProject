@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Setze die Umgebungsvariable für den Port
-ENV PORT=3000
+ENV REACT_APP_BACKEND_URL=http://backend:5000
 
 # Exponiere den Port, auf dem der Server lauscht
 EXPOSE 3000
