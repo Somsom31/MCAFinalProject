@@ -9,7 +9,6 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
-    working-directory: /server
 
     steps:
       - name: Checkout Repository
@@ -21,8 +20,10 @@ jobs:
           node-version: '14'
       - name: where am i
         run: ls -a
+        
       - name: Install Node Dependencies
         run: npm i
-
+        working-directory: './server'
       - name: Run Tests
         run: npm test
+        working-directory: './server'
