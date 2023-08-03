@@ -1,24 +1,29 @@
-name: small testing
+name: Staging CI
 
 on:
   push:
     branches:
-      - release
-      - tanja
-      - hera
-      - mauro
-      - mighel
+      - staging
 
 jobs:
   test:
+    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      
-    - name: Install dependencies
-      run: npm ci
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Run tests
-      run: npm test
+      - name: Set up Node Environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: where am i
+        run: ls -a
+        
+      - name: Install Node Dependencies
+        run: npm i
+        working-directory: './server'
+      - name: Run Tests
+        run: npm test
+        working-directory: './server'
